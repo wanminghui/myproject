@@ -1,0 +1,29 @@
+spring:
+   datasource:
+     url:  jdbc:mysql://rm-bp1au4nl43ks3z2974o.mysql.rds.aliyuncs.com:3306/myproject?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+     driver-class-name: com.mysql.jdbc.Driver
+     username: root
+     password: Wanminghui1995
+
+
+#     druid:
+#       initialSize: 10                         #��ʼ�����Ӵ�С
+#       min-idle: 5          #��С���ӳ�����
+#       max-active: 20 #������ӳ�����
+#       max-wait: 60000  #��ȡ�������ȴ�ʱ�� ��λ����
+#       timeBetweenEvictionRunsMillis: 60000
+#       minEvictableIdleTimeMillis: 300000
+#       validationQuery: SELECT 1 FROM DUAL     #��������
+#       #�������ӵ�ʱ���⣬��������Ϊtrue����Ӱ�����ܣ����ұ�֤��ȫ��
+#       testOnBorrow: false                     #��ȡ����ʱִ�м�⣬����رգ�Ӱ������
+#       testOnReturn: false                     #�黹����ʱִ�м�⣬����رգ�Ӱ������
+#       #�Ƿ���PSCache��PSCache��֧���α�����ݿ����������޴�
+#       #oracle���鿪����mysql�½���ر�
+#       poolPreparedStatements: false
+#       #����poolPreparedStatements����Ч
+#       maxPoolPreparedStatementPerConnectionSize: 20
+#       #������չ��������õĲ����=>stat:���ͳ��  log4j:��־  wall:����sqlע��
+#       filters: stat,wall
+#        #ͨ��connectProperties��������mergeSql����;��SQL��¼
+#       #connectionProperties: 'druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000'
+
