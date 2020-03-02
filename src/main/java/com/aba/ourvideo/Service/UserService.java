@@ -5,5 +5,6 @@ import com.aba.ourvideo.Bean.User;
 public interface UserService {
 
   User getUserInfo(Integer uid);
+  User SerchByUname(String uname);
 
 }

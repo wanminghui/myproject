@@ -17,4 +17,10 @@ public class UserServiceImpl implements UserService {
         User user=userDao.GetUserInfo(uid);
         return user;
     }
+
+    @Override
+    public User SerchByUname(String uname) {
+
+        return userDao.searchbyname(uname);
+    }
 }

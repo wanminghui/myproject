@@ -13,5 +13,7 @@ public interface UserDao {
     @Select("select * from t_user where uid=#{uid}")
     User GetUserInfo(Integer uid);
 
+    @Select("select * from t_user where uanme=#{uname}")
+    User searchbyname(String uname);
 
 }
