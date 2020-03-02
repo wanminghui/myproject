@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -24,11 +25,13 @@ public class UserController {
          return  user;
      }
 
-     public String suer(){
+     @PostMapping("/user/login")
+     @ResponseBody
+     public boolean login(User user){
+         System.out.println("传进入的值："+user);
 
 
-        return null;
+        return false;
      }
-
 
 }

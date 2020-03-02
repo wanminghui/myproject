@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>测试1</title>
+
+    <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+
+
+
+      <div id="app">
+           
+           账号： <input type="text" v-model="user.user_account" > <br>
+     密码  ：  <input type="password"  v-model="user.user_password"><br>
+         <button value="登录" @click="login">登录</button>
+      
+      </div>
+    
+ <script>
+			var vm = new Vue({
+				el:"#app",
+				data:{
+					user:{user_account:"",user_password:""}
+				},
+				methods:{
+					login:function(){
+						axios.post("user/login",this.user)
+						.then(res=>{
+							console.info(res.data);
+							if(res.data==true){
+								alert("登录成功！");
+								window.location.href="index.html";
+							}else{
+								alert("登录失败账号或密码不正确");
+							}
+						
+						})
+						.catch(res=>{
+							console.info(res);
+						});
+						return false;
+					}
+				
+				}
+			});
+		</script>
+
+</body>
+</html>
