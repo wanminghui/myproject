@@ -24,5 +24,11 @@ public class UserController {
          return  user;
      }
 
+     public String suer(){
+
+
+        return null;
+     }
+
 
 }
