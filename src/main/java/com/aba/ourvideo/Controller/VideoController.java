@@ -32,5 +32,11 @@ public class VideoController {
         return name;
     }
 
+    public List<VideoInfo> getVideoInfoPage(){ //包含分页查询的方法中来
+
+
+        return  null;
+    }
+
 
 }
