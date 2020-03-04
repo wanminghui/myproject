@@ -45,6 +45,8 @@ public class UserController {
         return false;
      }
 
+     //发送短信验证码
+
      public User loginSearch( String uname){
          //根据账号查询此人信息
         return userServiceImpl.SerchByUname(uname);

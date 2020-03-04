@@ -16,7 +16,8 @@
     font-size: large;
      margin-top: 0px;
     font-family: -apple-system;
-    background-color: #9e9e9e;
+    /*background-color: #9e9e9e;*/
+    color: #abdde5;
 }
 
 .mainbox{
@@ -30,6 +31,45 @@
 #maintable{
     text-align: center;
     width: 798px;
-    height: 500px;
+    height: 480px;
 
+}
+#bottomdiv{
+    width: 798px;
+    border: 1px;
+    height: 80px;
+    margin-top: 5px;
+    margin: auto;
+}
+#lasttPage{
+    height: 30px;
+    width: 60px;
+    border: 1px;
+    left: 120px;
+    text-align: center;
+    line-height: 30px;
+    background-color: #7f7f7f;
+    float: left;
+     margin: 0 200px;
+    border-radius: 15px;
+    color: antiquewhite;}
+    a:hover{
+        background-color: #bd3e4b;
+
+    }
+
+#nextPage{
+    height: 30px;
+    width: 60px;
+    border: 1px;
+    text-align: center;
+    line-height: 30px;
+    background-color: #7f7f7f;
+    float: left;
+    margin-left: 60px;
+    border-radius: 15px;
+    color: antiquewhite;
+}
+a:hover{
+    background-color: #bd3e4b;
 }
