@@ -29,25 +29,25 @@
 
 					<div class="wrap-input100 validate-input m-b-23" data-validate="请输入用户名">
 						<span class="label-input100">用户名</span>
-						<input class="input100" type="text" v-model="Bean.user_info_name" placeholder="请输入用户名" autocomplete="off">
+						<input class="input100" type="text"   placeholder="请输入用户名" autocomplete="off">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="请输入密码">
 						<span class="label-input100">密码</span>
-						<input class="input100" type="password" v-model="Bean.user_password" placeholder="请输入密码6-12位">
+						<input class="input100" type="password"   placeholder="请输入密码6-12位">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="请输入位手机号">
 						<span class="label-input100">手机号</span>
-						<input class="input100" type="text" v-model="Bean.user_info_tel" placeholder="请输入11位手机号"><input type="button" @click="sendcode" value="发送验证码">
+						<input class="input100" type="text" v-model="phoneBean.phonenumber" placeholder="请输入11位手机号"><input type="button" @click="sendcode" value="发送验证码">
 						<span class="focus-input100"><img src="images/phone.png" style="width: 32px; margin-top: 35px;margin-left: 3px;"/></span>
 					</div>
 					
 					 <div class="wrap-input100 validate-input"  >
 						<span class="label-input100"></span>
-						<input class="input100" type="text" v-model="Bean.randomcode" placeholder="请输入验证码!">
+						<input class="input100" type="text"   placeholder="请输入验证码!">
 						<span class="focus-input100">验证码</span>
 					</div>
 
@@ -80,11 +80,11 @@
 	var vm=new Vue({
   	  el:"#app",
   	  data:{
-			Bean:{user_info_name:"",user_password:"",user_info_tel:"",user_info_email:"",user_info_addr:"",user_info_idcard:"",user_info_job:""}
-		},
+			phoneBean:{ code:"",phonenumber:""}
+		     },
 		methods:{
 			register:function(){
-				axios.post("user/register",this.Bean)
+				axios.post("user/register",this.phoneBean)
 				.then(res=>{
 					console.info(res.data);
 					if(res.data=="注册成功！请重新登录！"){
@@ -102,18 +102,18 @@
 			},
 		
 		 sendcode:function(){//发送验证码
-			 axios.post("user/sendcode",this.Bean)
+			 axios.post("user/sendcode",this.phoneBean)
 			 .then(res=>{
 				 alert(res.data);
-				 
+
 			 })
-			 
+
 		 }
 		
 		}
-  	  
-  	  
-  	  
+
+
+
     });
 	
 	

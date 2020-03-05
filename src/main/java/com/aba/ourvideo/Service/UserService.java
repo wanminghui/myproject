@@ -6,5 +6,6 @@ public interface UserService {
 
   User getUserInfo(Integer uid);
   User SerchByUname(String uname);
+  Integer insertTocode(String phonenumber,String code);
 
 }
