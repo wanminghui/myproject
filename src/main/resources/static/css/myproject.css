@@ -73,3 +73,15 @@
 a:hover{
     background-color: #bd3e4b;
 }
+#currentPage{
+
+    width: 20px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border: 1px;
+    float: left;
+    margin: auto;
+    margin-right: 80px;
+
+}

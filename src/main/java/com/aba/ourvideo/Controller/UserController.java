@@ -14,9 +14,6 @@ import com.aliyuncs.profile.DefaultProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 
@@ -60,7 +57,7 @@ public class UserController {
     @PostMapping("user/sendcode")
     @ResponseBody
     public String SendMsg(@RequestBody phoneBean phoneBean){
-        String msg="短信验证码发送失败";
+        String msg="发送失败！,有可能你点击发送太快！或者一天只能接受5条短信～";
         String number=phoneBean.getPhonenumber();
         RegexUtil regexUtil=new RegexUtil();
         //进行手机号格式校验
@@ -95,16 +92,20 @@ public class UserController {
         request.putQueryParameter("TemplateParam", "{\"code\":\""+scode+"\"}");
         try {
             CommonResponse response = client.getCommonResponse(request);
-            System.out.println(response.getData());
-            System.out.println("短信发送成功！");
-            //将验证码存储进数据库中
-           Integer nu= userServiceImpl.insertTocode(number, scode);//存储成功
-            if (nu!=0){
-                msg="短信验证码发送成功！请注意查收！";
-                return  msg;
-            }else {
-                msg="验证码存储进数据库有误请联系开发人员检查！";
-                return msg;
+            if(response.getData().contains("OK")){
+
+                System.out.println(response.getData());
+                System.out.println("短信发送成功！");
+                //将验证码存储进数据库中
+                Integer nu= userServiceImpl.insertTocode(number, scode);//存储成功
+                if (nu!=0){
+                    msg="短信验证码发送成功！请注意查收！";
+                    return  msg;
+                }else {
+                    msg="验证码存储进数据库有误请联系开发人员检查！";
+                    return msg;
+                }
+
             }
 
         } catch (ServerException e) {

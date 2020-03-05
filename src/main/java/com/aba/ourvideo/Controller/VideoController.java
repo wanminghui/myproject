@@ -24,13 +24,9 @@ public class VideoController {
         return  infos;
     }
 
-    @GetMapping(value = "/videoTest/{name}",produces = "application/json;charset=utf-8")
-    @ResponseBody
-    public  Integer testOne(@PathVariable Integer name){
 
-        System.out.println("测试！！！1");
-        return name;
-    }
+
+
 
     public List<VideoInfo> getVideoInfoPage(){ //包含分页查询的方法中来
 
