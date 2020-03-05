@@ -1,5 +1,6 @@
 package com.aba.ourvideo.Controller;
 import com.aba.ourvideo.Bean.User;
+import com.aba.ourvideo.Bean.code;
 import com.aba.ourvideo.Bean.phoneBean;
 import com.aba.ourvideo.ServiceImpl.UserServiceImpl;
 import com.aba.ourvideo.utils.RegexUtil;
@@ -99,6 +100,7 @@ public class UserController {
                 //将验证码存储进数据库中
                 Integer nu= userServiceImpl.insertTocode(number, scode);//存储成功
                 if (nu!=0){
+
                     msg="短信验证码发送成功！请注意查收！";
                     return  msg;
                 }else {
@@ -107,7 +109,6 @@ public class UserController {
                 }
 
             }
-
         } catch (ServerException e) {
             e.printStackTrace();
         } catch (ClientException e) {
@@ -117,11 +118,57 @@ public class UserController {
         return msg;
     }
 
-
      public User loginSearch( String uname){
          //根据账号查询此人信息
         return userServiceImpl.SerchByUname(uname);
      }
+
+     //进行注册
+
+    @PostMapping("user/register")
+    @ResponseBody
+    public  String register(@RequestBody phoneBean phoneBean) throws UnsupportedEncodingException {
+        System.out.println("得到注册时候传入的信息："+phoneBean);
+         String msg="注册失败，请检查您输入的信息是否有误";
+        //1.进行格式校验
+        if(phoneBean.getPhonenumber()==null||phoneBean.getT_code()==null||phoneBean.getUanme()==null||phoneBean.getUpassword()==null){
+            System.out.println("输入值有为空的！");
+           msg="您输入的值有误，请检查是否输入空的值！";
+           return  msg;
+        }else {
+            //2.进行用户是否存在校验
+          //根据用户uanme去查询是否存在此用户
+         User user= userServiceImpl.SerchByUname(phoneBean.getUanme());
+         if (user==null){//不存在此用户的时候
+             //3.进行手机验证码校验
+            code code=userServiceImpl.searchBycode(phoneBean.getT_code());
+            if (code!=null&&code.getTelphone().equals(phoneBean.getPhonenumber())){
+                //此时用户进行注册
+                User loginuser=new User();
+                loginuser.setUanme(phoneBean.getUanme());
+                String upassword=phoneBean.getUpassword();
+                Base64.Encoder encoder=Base64.getEncoder();
+                byte[] bytes=upassword.getBytes("utf-8");
+                String enUpassword= encoder.encodeToString(bytes);//得到编码后的密码数据
+                loginuser.setUpassword(enUpassword);
+                //进行注册！
+             Integer registerNumber= userServiceImpl.register(loginuser);
+                System.out.println("得到返回的结果数是："+registerNumber);
+                     msg="注册成功！请登录~";
+                     return msg;
+             }else {//验证码不正确
+                msg="你输入的验证码不正确请查看是否正确~";
+                return  msg;
+            }
+
+         }else {//存在此用户！
+             msg="存在此用户，请直接登录！";
+             return  msg;
+         }
+
+        }
+
+    }
 
 
 
