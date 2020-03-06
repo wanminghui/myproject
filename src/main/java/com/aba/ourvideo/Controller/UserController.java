@@ -131,7 +131,7 @@ public class UserController {
         System.out.println("得到注册时候传入的信息："+phoneBean);
          String msg="注册失败，请检查您输入的信息是否有误";
         //1.进行格式校验
-        if(phoneBean.getPhonenumber()==null||phoneBean.getT_code()==null||phoneBean.getUanme()==null||phoneBean.getUpassword()==null){
+        if(phoneBean.getPhonenumber()==""||phoneBean.getT_code()==""||phoneBean.getUanme()==""||phoneBean.getUpassword()==""){
             System.out.println("输入值有为空的！");
            msg="您输入的值有误，请检查是否输入空的值！";
            return  msg;
