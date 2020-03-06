@@ -28,8 +28,11 @@ public class VideoController {
 
 
 
-    public List<VideoInfo> getVideoInfoPage(){ //包含分页查询的方法中来
-
+    public List<VideoInfo> getVideoInfoPage(String contextInfo,Integer currentPage){ //包含分页查询的方法中来
+        /*包含的逻辑：分页展示输入当前的页码数
+         每页包含的固定显示的数量为4条数据
+         查询所有的条数，当当前页码数*4小于总共的数量的时候才能进行下一页的操作
+        * */
 
         return  null;
     }

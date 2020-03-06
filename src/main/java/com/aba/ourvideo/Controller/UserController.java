@@ -15,8 +15,12 @@ import com.aliyuncs.profile.DefaultProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.*;
+import javax.websocket.Session;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
+import java.util.HashMap;
 
 @Controller
 public class UserController {
@@ -32,9 +36,9 @@ public class UserController {
          return  user;
      }
 
-     @PostMapping("/user/login")
+     @PostMapping(value = "/user/login",produces = "application/json;charset=utf-8")
      @ResponseBody
-     public boolean login(@RequestBody User user) throws UnsupportedEncodingException {
+     public boolean login(@RequestBody User user, HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
         boolean result=false;
         System.out.println("传进入的值："+user);
         String uname=user.getUanme();
@@ -44,8 +48,12 @@ public class UserController {
          String enUpassword= encoder.encodeToString(bytes);//得到编码后的密码数据
          User suser= loginSearch(uname);
           if (suser!=null){
-           if(suser.getUpassword().equals(enUpassword)){
-               result=true;
+          if(suser.getUpassword().equals(enUpassword)){
+           //将登录的信息存储进cookie中
+             String username=user.getUanme();
+             Cookie cookie=new Cookie("user_name", username);
+             response.addCookie(cookie);//将cookie值返回
+                result=true;
                return  result;
            }
 
