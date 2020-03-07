@@ -22,6 +22,10 @@ public class maintest {
 
         System.out.println( "得到的数字结果是："+ code);
 
+        int pagenumber=23;
+        int numberone=4;
+        System.out.println("得到的结果是："+pagenumber/numberone);
+
 
 
 

@@ -5,6 +5,7 @@ public class VideoInfo {
     private String addr;
     private  int t_id;
     private  String introduce;
+    private boolean expire;
 
     public int getVid() {
         return vid;
@@ -38,6 +39,14 @@ public class VideoInfo {
         this.introduce = introduce;
     }
 
+    public boolean isExpire() {
+        return expire;
+    }
+
+    public void setExpire(boolean expire) {
+        this.expire = expire;
+    }
+
     @Override
     public String toString() {
         return "VideoInfo{" +
@@ -45,7 +54,10 @@ public class VideoInfo {
                 ", addr='" + addr + '\'' +
                 ", t_id=" + t_id +
                 ", introduce='" + introduce + '\'' +
+                ", expire=" + expire +
                 '}';
     }
 
+    public VideoInfo() {
+    }
 }
