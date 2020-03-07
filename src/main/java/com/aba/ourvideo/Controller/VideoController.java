@@ -14,12 +14,13 @@ public class VideoController {
     @Autowired
     private VideoServiceImpl videoService;
 
-    @GetMapping(value = "/video/{content}",produces = "application/json;charset=utf-8")
+//    @GetMapping(value = "/video/tosearch",produces = "application/json;charset=utf-8")
+    @PostMapping("/video/tosearch")
     @ResponseBody
-    public List<VideoInfo> getVideoInfo(@PathVariable String content){
-        System.out.println("传入的值:"+content);
+    public List<VideoInfo> getVideoInfo(@RequestBody toPage toPage ){
+        System.out.println("传入的值:"+toPage.getContextInfo());
         System.out.println("进入到查询所有视频信息的方法中来×××");
-        List<VideoInfo>  infos= videoService.showVideoInfo(content);
+        List<VideoInfo>  infos= videoService.showVideoInfo(toPage.getContextInfo());
         return  infos;
     }
 
