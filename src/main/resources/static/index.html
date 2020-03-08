@@ -95,79 +95,65 @@
                     //测试获取数组的大小长度
                     var num=this.VideoInfo;
                     //调用提前查询下一页的函数
-                    this.toknownext(contextinfo);
-                    console.info("查询提前知道下一页的改变的结果"+this.flag);
-                    if (this.flag){//提前判断当下一页为空的时候
-                        if (this.VideoInfo!=''&& eval(num.length==4)){//此时还应该加一个判断，当下一页没有值的是时候
-                            this.one=this.one+1;
-                            //alert("点击下一页获取到的值是:"+contextinfo);
-                            //alert("获取到点击下一页得到的传入的值:"+this.one);
-                            //进行分页操作搜索功能
-                            this.toPage.contextInfo=contextinfo;
-                            this.toPage.currentPage=this.one;
-                            // alert("传入后台的页码值是："+this.toPage.currentPage+"内容是:"+this.toPage.contextInfo);
-                            axios.post("video/tonext",this.toPage)
-                                .then(res=>{
-                                console.info(res.data);
-                            // alert("前端已经接受到数据！");
-                            //result.VideoInfo=res.data;
-                            //此处的this已经表示了data
-                            if (res.data==''){
-                                alert("您好已经到达最底了~");
-                            }else {
-                                this.VideoInfo=res.data;
-                            }
-
-                            console.info("处理成功！");
-
-                        }).catch(res=>{
-                                console.info("没有成功！");
-                            console.info(res);
-                        });
-                        }
-
-                    }
-
-
-                     // if (this.VideoInfo!=''&& eval(num.length==4) && this.flag){//此时还应该加一个判断，当下一页没有值的是时候
-                     //     this.one=this.one+1;
-                     //     //alert("点击下一页获取到的值是:"+contextinfo);
-                     //     //alert("获取到点击下一页得到的传入的值:"+this.one);
-                     //     //进行分页操作搜索功能
-                     //     this.toPage.contextInfo=contextinfo;
-                     //     this.toPage.currentPage=this.one;
-                     //    // alert("传入后台的页码值是："+this.toPage.currentPage+"内容是:"+this.toPage.contextInfo);
-                     //     axios.post("video/tonext",this.toPage)
-                     //         .then(res=>{
-                     //         console.info(res.data);
-                     //     // alert("前端已经接受到数据！");
-                     //     //result.VideoInfo=res.data;
-                     //     //此处的this已经表示了data
-                     //     if (res.data==''){
-                     //         alert("您好已经到达最底了~");
-                     //     }else {
-                     //         this.VideoInfo=res.data;
-                     //     }
-                     //
-                     //     console.info("处理成功！");
-                     //
-                     // }).catch(res=>{
-                     //         console.info("没有成功！");
-                     //     console.info(res);
-                     // });
-                     // }
+                    // this.toknownext(contextinfo);
+                    // console.info("查询提前知道下一页的改变的结果"+this.flag);
+                    // if (this.flag){//提前判断当下一页为空的时候
+                    //     if (this.VideoInfo!=''&& eval(num.length==4)){//此时还应该加一个判断，当下一页没有值的是时候
+                    //         this.one=this.one+1;
+                    //         //alert("点击下一页获取到的值是:"+contextinfo);
+                    //         //alert("获取到点击下一页得到的传入的值:"+this.one);
+                    //         //进行分页操作搜索功能
+                    //         this.toPage.contextInfo=contextinfo;
+                    //         this.toPage.currentPage=this.one;
+                    //         // alert("传入后台的页码值是："+this.toPage.currentPage+"内容是:"+this.toPage.contextInfo);
+                    //         axios.post("video/tonext",this.toPage)
+                    //             .then(res=>{
+                    //             console.info(res.data);
+                    //         // alert("前端已经接受到数据！");
+                    //         //result.VideoInfo=res.data;
+                    //         //此处的this已经表示了data
+                    //         if (res.data==''){
+                    //             alert("您好已经到达最底了~");
+                    //         }else {
+                    //             this.VideoInfo=res.data;
+                    //         }
+                    //
+                    //         console.info("处理成功！");
+                    //
+                    //     }).catch(res=>{
+                    //             console.info("没有成功！");
+                    //         console.info(res);
+                    //     });
+                    //     }
+                    //
+                    // }
+                     if (this.VideoInfo!=''&& eval(num.length==4)){//此时还应该加一个判断，当下一页没有值的是时候
+                         this.one=this.one+1;
+                         //alert("点击下一页获取到的值是:"+contextinfo);
+                         //alert("获取到点击下一页得到的传入的值:"+this.one);
+                         //进行分页操作搜索功能
+                         this.toPage.contextInfo=contextinfo;
+                         this.toPage.currentPage=this.one;
+                         axios.post("video/tonext",this.toPage)
+                             .then(res=>{
+                             console.info(res.data);
+                         //result.VideoInfo=res.data;
+                         //此处的this已经表示了data
+                         if (res.data==''){
+                             alert("您好已经到达最底了~");
+                         }else {
+                             this.VideoInfo=res.data;
+                         }
+                         console.info("处理成功！");
+                     }).catch(res=>{
+                         console.info("没有成功！");
+                         console.info(res);
+                     });
+                     }
                        else {
-
                          alert("已经给到底了哦~")
                      }
-
-
-
-
-
-
                 }
-
             },
             lastpage:function(contextinfo){
                 if (contextinfo==''){
