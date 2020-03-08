@@ -44,7 +44,8 @@
         data:{
             toPage:{contextInfo:"",currentPage:"1"},
             VideoInfo: [],
-            one:1
+            one:1,
+            flag :true
 
         },
         methods:{
@@ -52,6 +53,7 @@
                 //这里为了在内部的函数使用外部的对象做的声明
                // var result= this;
                 //前端做判断输入的值为空的话不做处理
+                this.one=1;//此处如果进行新的搜索会将分页显示的条数设置为1
                 if (this.toPage.contextInfo==''){
                     alert("您好请输入有效值！");
                 }else {
@@ -92,35 +94,69 @@
                     //当弹出来的没有内容了不再增加一
                     //测试获取数组的大小长度
                     var num=this.VideoInfo;
-                 //  alert("得到数组的长度是："+ eval(num.length));
+                    //调用提前查询下一页的函数
+                    this.toknownext(contextinfo);
+                    console.info("查询提前知道下一页的改变的结果"+this.flag);
+                    if (this.flag){//提前判断当下一页为空的时候
+                        if (this.VideoInfo!=''&& eval(num.length==4)){//此时还应该加一个判断，当下一页没有值的是时候
+                            this.one=this.one+1;
+                            //alert("点击下一页获取到的值是:"+contextinfo);
+                            //alert("获取到点击下一页得到的传入的值:"+this.one);
+                            //进行分页操作搜索功能
+                            this.toPage.contextInfo=contextinfo;
+                            this.toPage.currentPage=this.one;
+                            // alert("传入后台的页码值是："+this.toPage.currentPage+"内容是:"+this.toPage.contextInfo);
+                            axios.post("video/tonext",this.toPage)
+                                .then(res=>{
+                                console.info(res.data);
+                            // alert("前端已经接受到数据！");
+                            //result.VideoInfo=res.data;
+                            //此处的this已经表示了data
+                            if (res.data==''){
+                                alert("您好已经到达最底了~");
+                            }else {
+                                this.VideoInfo=res.data;
+                            }
 
-                     if (this.VideoInfo!=''&& eval(num.length==4)){
-                         this.one=this.one+1;
-                         //alert("点击下一页获取到的值是:"+contextinfo);
-                         //alert("获取到点击下一页得到的传入的值:"+this.one);
-                         //进行分页操作搜索功能
-                         this.toPage.contextInfo=contextinfo;
-                         this.toPage.currentPage=this.one;
-                        // alert("传入后台的页码值是："+this.toPage.currentPage+"内容是:"+this.toPage.contextInfo);
-                         axios.post("video/tonext",this.toPage)
-                             .then(res=>{
-                             console.info(res.data);
-                         // alert("前端已经接受到数据！");
-                         //result.VideoInfo=res.data;
-                         //此处的this已经表示了data
-                         if (res.data==''){
-                             alert("您好已经到达最底了~");
-                         }else {
-                             this.VideoInfo=res.data;
-                         }
+                            console.info("处理成功！");
 
-                         console.info("处理成功！");
+                        }).catch(res=>{
+                                console.info("没有成功！");
+                            console.info(res);
+                        });
+                        }
 
-                     }).catch(res=>{
-                             console.info("没有成功！");
-                         console.info(res);
-                     });
-                     }else {
+                    }
+
+
+                     // if (this.VideoInfo!=''&& eval(num.length==4) && this.flag){//此时还应该加一个判断，当下一页没有值的是时候
+                     //     this.one=this.one+1;
+                     //     //alert("点击下一页获取到的值是:"+contextinfo);
+                     //     //alert("获取到点击下一页得到的传入的值:"+this.one);
+                     //     //进行分页操作搜索功能
+                     //     this.toPage.contextInfo=contextinfo;
+                     //     this.toPage.currentPage=this.one;
+                     //    // alert("传入后台的页码值是："+this.toPage.currentPage+"内容是:"+this.toPage.contextInfo);
+                     //     axios.post("video/tonext",this.toPage)
+                     //         .then(res=>{
+                     //         console.info(res.data);
+                     //     // alert("前端已经接受到数据！");
+                     //     //result.VideoInfo=res.data;
+                     //     //此处的this已经表示了data
+                     //     if (res.data==''){
+                     //         alert("您好已经到达最底了~");
+                     //     }else {
+                     //         this.VideoInfo=res.data;
+                     //     }
+                     //
+                     //     console.info("处理成功！");
+                     //
+                     // }).catch(res=>{
+                     //         console.info("没有成功！");
+                     //     console.info(res);
+                     // });
+                     // }
+                       else {
 
                          alert("已经给到底了哦~")
                      }
@@ -169,6 +205,26 @@
                 }
 
             },
+
+            toknownext:function(contextinfo){
+                //此处写一个函数，判断当这一页值恰好为4个同时也是最有一页的情况下的时候
+                var newtoPage=this.toPage;
+                newtoPage.currentPage=newtoPage.currentPage+1;
+                newtoPage.contextInfo=contextinfo;
+                //定义一个用于判断的boole值
+                axios.post("video/tonext",newtoPage)
+                    .then(res=>{
+                    console.info("提前预备下一页的值："+res.data);
+                if (res.data==''){//当下一页没有值的时候
+                    console.info("查看此")
+                     this.flag=false;
+                    console.info("查看此时的flag的值的变化"+this.flag);
+                }
+            }).catch(res=>{
+                });
+
+                console.info("得到flag的值是："+this.flag);
+            }
 
 
 
