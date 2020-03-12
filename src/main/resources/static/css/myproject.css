@@ -6,18 +6,33 @@
     border: 1px;
     text-align: center;
     line-height: 50px;
-    margin-top: 0px;
+    margin-top: 20px;
 }
 #toptitle{
     height: 40px;
     width: 400px;
     margin: auto;
     text-align: center;
-    font-size: large;
-     margin-top: 0px;
+    font-size: 32px;
+    margin-top: 0px;
     font-family: -apple-system;
     /*background-color: #9e9e9e;*/
-    color: #abdde5;
+    color: #BC0909;
+}
+#searchBox{
+    width: 40px;
+    height: 40px;
+    /*border: solid 1px;*/
+    float: left;
+}
+#sbbox{
+    width: 260px;
+    height: 40px;
+    /*border: solid 1px;*/
+    text-align: center;
+    line-height: 40px;
+    float: left;
+    margin-left: 100px;
 }
 
 .mainbox{
@@ -32,6 +47,8 @@
     text-align: center;
     width: 798px;
     height: 480px;
+    font-family: -apple-system;
+    font-size: 20px;
 
 }
 #bottomdiv{

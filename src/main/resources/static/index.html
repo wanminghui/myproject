@@ -8,20 +8,22 @@
     <script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
-<body background="http://attach.bbs.miui.com/forum/201409/09/130415ome6e930vp99to05.jpg" >
+<body background="images/back.jpg" >
 
 <div id="app">
 <!--平台名称-->
 <div id="toptitle"><p style="width: 100px;height: 20px;text-align: center;margin: auto;font-size: xx-large;">V&nbsp;&nbsp;度&nbsp;&nbsp;课</p></div>
+
+<!--    <input type="button" value="点击为您推荐！" id="mybutton" @click="fuck" style="color: #bd3e4b" >-->
 <!--搜索框的位置-->
 <div id="search" >
-    <input type="text" id="searchContext" v-model="toPage.contextInfo" style="border-color: #1e7e34;height: 25px" placeholder="请输入视频名称哦~">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp<input type="button" value="点击为您推荐！" id="mybutton" @click="fuck" style="color: #bd3e4b" >
+    <div id="sbbox"><input type="text"  id="searchContext" v-model="toPage.contextInfo" style="outline: 0; width: 240px; text-align: center; height: 32px" placeholder="请输入视频名称哦~"></div><div id="searchBox" @click="fuck"><img width="40px" height="40px" src="images/search.jpg"></div>
 </div>
 
 <div class="mainbox">
     <table id="maintable">
         <tr><td>视频名称</td><td>视频网址</td><td>操作</td>
-        <tr v-for="(item,index) in VideoInfo" :key="index">
+        <tr style="color:#BC0909" v-for="(item,index) in VideoInfo" :key="index">
         <td>{{item.introduce}}</td>
         <td>{{item.addr}}</td>
         <td @click="seeNew(item.addr)">点击查看</td>
