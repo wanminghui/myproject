@@ -6,6 +6,13 @@
    <link type="text/css" rel="stylesheet" href="css/myproject.css" >
     <script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/axios.min.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+
+        input::-webkit-input-placeholder{
+            color: #9fa3a7;
+        }
+
+    </style>
 </head>
 
 <body background="images/back.jpg" >
@@ -17,24 +24,24 @@
 <!--    <input type="button" value="点击为您推荐！" id="mybutton" @click="fuck" style="color: #bd3e4b" >-->
 <!--搜索框的位置-->
 <div id="search" >
-    <div id="sbbox"><input type="text"  id="searchContext" v-model="toPage.contextInfo" style="outline: 0; width: 240px; text-align: center; height: 32px" placeholder="请输入视频名称哦~"></div><div id="searchBox" @click="fuck"><img width="40px" height="40px" src="images/search.jpg"></div>
+    <div id="sbbox"><input type="text"  id="searchContext" v-model="toPage.contextInfo"  style="outline: 0; width: 240px; text-align: center; height: 32px"  placeholder="请输入视频名称哦~"></div><div id="searchBox" @click="fuck"><img width="40px" height="40px" src="images/search.jpg"></div>
 </div>
 
 <div class="mainbox">
     <table id="maintable">
-        <tr><td>视频名称</td><td>视频网址</td><td>操作</td>
+        <tr style="font-size:18px" v-show=" VideoInfo!=''"><td>视频名称</td><td>视频网址</td><td>操作</td>
         <tr style="color:#BC0909" v-for="(item,index) in VideoInfo" :key="index">
-        <td>{{item.introduce}}</td>
-        <td>{{item.addr}}</td>
-        <td @click="seeNew(item.addr)">点击查看</td>
+        <td style="color: #721c24">{{item.introduce}}</td>
+        <td style="color: whitesmoke">{{item.addr}}</td>
+        <td @click="seeNew(item.addr)" style="color: #BC0909;">点击查看</td>
 <!--        <tr><td>人上</td><td>www.seghbsvr ebrjbrbiwjjrnnrmnjeri.com</td><td>点击查看</td>-->
 <!--        <tr><td>视问过我让国人人称</td><td>视频网址</td><td>点击查看</td>-->
 <!--        <tr><td>视sdv</td><td>视频网址</td><td>点击查看</td>-->
         </tr>
     </table>
-    <div id="bottomdiv">
+    <div id="bottomdiv" v-show=" VideoInfo!=''">
         <div id="lasttPage"  @click="lastpage(toPage.contextInfo)"><a>上一页</a></div>
-        <div id="currentPage"><span>{{one}}</span></div>
+        <div id="currentPage" style="color: #BC0909"><span>{{one}}</span></div>
         <div id="nextPage" @click="nextpage(toPage.contextInfo)"><a>下一页</a></div>
 
     </div>
