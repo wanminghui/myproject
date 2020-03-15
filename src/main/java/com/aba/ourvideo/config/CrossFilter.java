@@ -7,11 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class CrossFilter implements Filter {
+public class CrossFilter implements Filter {//跨域过滤器
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
     }
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
