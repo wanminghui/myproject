@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+//@CrossOrigin(origins = "http://localhost:8080")
 public class VideoController {
 
     @Autowired
     private VideoServiceImpl videoService;
 
-//    @GetMapping(value = "/video/tosearch",produces = "application/json;charset=utf-8")
     @PostMapping("/video/tosearch")
+    @CrossOrigin("http://localhost:8080")
     @ResponseBody
     public List<VideoInfo> getVideoInfo(@RequestBody toPage toPage ){
         System.out.println("传入的值:"+toPage.getContextInfo());
